@@ -14,13 +14,11 @@ from .const import DOMAIN, MODE_ROTARY_TILT, MODE_BINARY_TILT
 
 _LOGGER = logging.getLogger(__name__)
 
-class EntityCombinerConfigFlow(ConfigFlow, domain=DOMAIN):
-    """Handle a config flow for Entity Combiner."""
-
+class ExtendedWindowStatusConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION = 1
 
     async def async_step_user(self, user_input: Dict[str, Any] | None = None) -> FlowResult:
-        """Handle the initial step: select device and binary entity."""
+        """Handle the initial step: select device and base entity."""
         _LOGGER.debug(f"Config flow step: user, input: {user_input}")
         errors = {}
         if user_input is not None:
@@ -156,14 +154,14 @@ class EntityCombinerConfigFlow(ConfigFlow, domain=DOMAIN):
     def async_get_options_flow(config_entry: ConfigEntry) -> OptionsFlow:
         """Get the options flow for this handler."""
         _LOGGER.debug(f"Starting options flow for config entry: {config_entry.entry_id}")
-        return EntityCombinerOptionsFlow(config_entry)
+        return ExtendedWindowStatusOptionsFlow(config_entry)
 
-class EntityCombinerOptionsFlow(OptionsFlow):
+class ExtendedWindowStatusOptionsFlow(OptionsFlow):
     """Handle options flow for Entity Combiner."""
 
     def __init__(self, config_entry: ConfigEntry) -> None:
         """Initialize options flow."""
-        super().__init__(config_entry)
+        super().__init__()
         _LOGGER.debug(f"Initialized options flow for {config_entry.entry_id}")
 
     async def async_step_init(self, user_input: Dict[str, Any] | None = None) -> FlowResult:
@@ -226,7 +224,7 @@ class EntityCombinerOptionsFlow(OptionsFlow):
             )
 
         mode = self._temp_data["mode"]
-        if mode == MODE_ROTARY:
+        if mode == MODE_ROTARY_TILT:
             schema = vol.Schema({
                 vol.Required("second_entity", default=self.config_entry.data.get("second_entity")): selector({
                     "entity": {
