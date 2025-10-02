@@ -1,0 +1,13 @@
+{
+    "domain": "extended_window_status",
+    "name": "Extended window status",
+    "version": "0.0.1",
+    "documentation": "https://github.com/mhelff/extended_window_status",
+    "issue_tracker": "https://github.com/mhelff/extended_window_status/issues",
+    "iot_class": "local_push",
+    "config_flow": true,
+    "dependencies": [],
+    "codeowners": ["@mhelff"],
+    "requirements": [],
+    "translations": ["en", "de", "fr"]
+  }

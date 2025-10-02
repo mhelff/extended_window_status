@@ -1,0 +1,13 @@
+{
+    "entity": {
+      "sensor": {
+        "extended_window_status": {
+          "state": {
+            "closed": "Closed",
+            "open": "Open",
+            "tilted": "Tilted"
+          }
+        }
+      }
+    }
+  }
