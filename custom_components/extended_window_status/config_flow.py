@@ -128,7 +128,6 @@ class EntityCombinerConfigFlow(ConfigFlow, domain=DOMAIN):
             schema = vol.Schema({
                 vol.Required("second_entity"): selector({
                     "entity": {
-                        "domain": ["number", "input_number"]
                     }
                 }),
             })
@@ -231,7 +230,6 @@ class EntityCombinerOptionsFlow(OptionsFlow):
             schema = vol.Schema({
                 vol.Required("second_entity", default=self.config_entry.data.get("second_entity")): selector({
                     "entity": {
-                        "domain": ["number", "input_number"]
                     }
                 }),
             })
