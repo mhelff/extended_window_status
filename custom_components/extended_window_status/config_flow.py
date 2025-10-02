@@ -76,7 +76,7 @@ class EntityCombinerConfigFlow(ConfigFlow, domain=DOMAIN):
                 }),
                 vol.Required("base_entity"): selector({
                     "entity": {
-                        "domain": ["base_sensor", "input_boolean"]
+                        "domain": ["binary_sensor", "input_boolean"]
                     }
                 }),
             }
